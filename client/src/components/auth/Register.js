@@ -30,11 +30,14 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-
+    //TODO: remove when in prod
+    console.log('newUser Register.js', newUser);
     axios
       .post('/api/users/register', newUser)
       .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+      .catch(err => this.setState({ 
+        errors: err.response.data //from server res
+      }));
   }
 
   render() {

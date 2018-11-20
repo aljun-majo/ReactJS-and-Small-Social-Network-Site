@@ -1,6 +1,13 @@
 import React, { Component } from 'react';
-import axios from 'axios';
+//import axios from 'axios'; moved axios to authActions.js
 import classnames from 'classnames';
+import { withRouter } from 'react-router-dom';
+
+import PropTypes from 'prop-types';
+
+//react redux part
+import { connect } from 'react-redux';
+import { registerUser } from '../../actions/authActions';
 
 class Register extends Component {
   constructor() {
@@ -17,6 +24,18 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  //to receive props from redux errors: state.errors
+  componentWillReceiveProps(nextProps) {
+    console.log('componentWillReceiveProps - Register.js', nextProps);
+    if(nextProps.errors) {
+      console.log('componentWillReceiveProps inside IF - Register.js',nextProps);
+   
+      this.setState({
+        errors: nextProps.errors
+      });
+    }
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -31,14 +50,42 @@ class Register extends Component {
       password2: this.state.password2
     };
 
-    axios
-      .post('/api/users/register', newUser)
-      .then(res => console.log(res.data))
-      .catch(err => this.setState({ errors: err.response.data }));
+    //props from Redux
+    this.props.registerUser(newUser, this.props.history);
+
+    //TODO: remove when in prod
+    console.log('newUser this.props.history Register.js', newUser, this.props.history);
+    // moved to authActions.js
+    // axios
+    //   .post('/api/users/register', newUser)
+    //   .then(res => console.log(res.data))
+    //   .catch(err => this.setState({ 
+    //     errors: err.response.data //from server res
+    //   }));
   }
 
   render() {
     const { errors } = this.state;
+
+    //redux state
+    /* this.porps.auth
+    *    .user
+    *    .isAuthenticated
+    *  file: reducers/authReducer.js
+    *  const initialState = {
+    *    isAuthenticated: false,
+    *    user: {}
+    *  };
+    *  
+    *  user is an Object
+    *  .user.name
+    *  .user.email
+    *  .user.password
+    *  .user.password2
+    * 
+    */
+
+    //const { user } = this.props.auth;
 
     return (
       <section className="full-height register-bg register">
@@ -124,4 +171,35 @@ class Register extends Component {
   }
 }
 
-export default Register;
+//export default Register;
+
+//redux
+//export default connect(null, { registerUser })(Register);
+
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+}
+
+/*
+ *  auto: state.auto || the state.'auto' is comes from reducers/index.js
+ *  inedx.js = auth: authReducer, // use this.props.auth
+ *  =====================
+ *  can be access also as
+ *   this.props.auth.user
+ *   this.props.auth.isAuthenticated
+ * 
+ *   //errors
+ *  this.props.errors
+ *  use anothe lifecycle method to use this 'errors'
+ *  componentWillRecieveProps()
+ */
+ const mapStateToProps = (state) => ({
+  auth: state.auth,
+  errors: state.errors
+});
+
+// withRouter added for the history use
+// ang change this line above 'this.props.registerUser(newUser, this.props.history');
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));

@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+
 import {
   Collapse,
   Navbar,
@@ -33,26 +35,26 @@ class NavBar extends React.Component {
         
         <Navbar color="dark" dark expand="md">
             <section className="container">
-                <NavbarBrand href="/">TheGoodArtisan</NavbarBrand>
+                <Link className="navbar-brand" to="/">TheGoodArtisan</Link>
                 <NavbarToggler onClick={this.toggle} />
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                     <NavItem>
-                        <NavLink href="/posts/all">News</NavLink>
+                        <Link className="nav-link" to="/posts/all">News</Link>
                     </NavItem>
                     <NavItem>
-                        <NavLink href="profiles.html">Profiles</NavLink>
+                        <Link className="nav-link" to="/profiles">Profiles</Link>
                     </NavItem>
                     <UncontrolledDropdown nav inNavbar>
                         <DropdownToggle nav caret>
                         Account
                         </DropdownToggle>
                         <DropdownMenu right>
-                        <DropdownItem tag="a" href="login.html">Login</DropdownItem>
+                        <Link className="dropdown-item" to="/login">Login</Link>
                         <DropdownItem divider />
-                        <DropdownItem tag="a" href="register.html">
+                        <Link className="dropdown-item" to="/register">
                             Signup
-                        </DropdownItem>
+                        </Link>
                         </DropdownMenu>
                     </UncontrolledDropdown>
                     </Nav>

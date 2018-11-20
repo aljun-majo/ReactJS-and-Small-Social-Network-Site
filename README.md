@@ -27,8 +27,8 @@ Small social network site with reactjs, redux, nodejs, express, jwt authenticati
    
 ##
 
-#### To run localhost
+#### To run localhost dev
 - Type: npm run dev
   - in browser use these:
-    - http://localhost:5000 (backend localhost running using the _server.js_ file)
-    - http://localhost:3000  (react app localhost running using inside the _cleint_ folder )
+    - http://localhost:5000 ( back-end side - server dev localhost running using the _server.js_ file )
+    - http://localhost:3000  ( front-end side - react app localhost running using inside the _cleint_ folder )

@@ -12,17 +12,15 @@ Small social network site with reactjs, redux, nodejs, express, jwt authenticati
     - [ ] more files...
 
 
-###
 ##
-###
 
 #### To Install packages inside Root folder and Client folder 
     
     - In directory Root folder( **RootFolder** ) 
-      - Type: **_npm install_**
+      - Type: **npm install**
       - It will install all packages inside RoolFolder/package.json
-    - And to install packages inside **_client folder_**
-      - Type: **_npm client-install_**
+    - And to install packages inside _client folder_
+      - Type: **npm client-install**
       - It will install all packages inside RoolFolder/client/package.json
       
     

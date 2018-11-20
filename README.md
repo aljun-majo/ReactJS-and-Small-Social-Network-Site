@@ -1,6 +1,8 @@
 # ReactJS and Small Social Network Site
 Small social network site with reactjs, redux, nodejs, express, jwt authentication, mongoDB, Heroku, reactstrap, bootstrap 4
 
+
+### Root folder and Client folder
 - [x] **RootFolder** _(Folder)_
 - [ ] package.json (root folder npm packages)
 - [ ] more files
@@ -9,7 +11,8 @@ Small social network site with reactjs, redux, nodejs, express, jwt authenticati
   - [ ] package.json _(React app with npm packages)_
   - [ ] more files
 
-## To Install packages inside Root folder and Client folder 
+
+#### To Install packages inside Root folder and Client folder 
     
     - In directory Root folder( **RootFolder** ) 
       - Type: npm install

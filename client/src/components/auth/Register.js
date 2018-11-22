@@ -24,6 +24,12 @@ class Register extends Component {
     this.onSubmit = this.onSubmit.bind(this);
   }
 
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  } 
+
   //to receive props from redux errors: state.errors
   componentWillReceiveProps(nextProps) {
     console.log('componentWillReceiveProps - Register.js', nextProps);
@@ -51,6 +57,7 @@ class Register extends Component {
     };
 
     //props from Redux
+    // invoke redux action 'registerUser'
     this.props.registerUser(newUser, this.props.history);
 
     //TODO: remove when in prod
